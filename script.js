@@ -1,12 +1,28 @@
+let outputScreen = document.getElementById("output-screen");
 
-function display(Number){
-    document.getElementById("result").value += Number;
-}
-function calculate() {
-    var result = document.getElementById("result").value;
-    var x = eval(result);
-    document.getElementById("result").value = x;
-}
-function clearSrcr(){
-    document.getElementById("result").value = "";
-}
+    function display(num) 
+    {
+    
+        outputScreen.value += num;
+    }
+    
+    function Calculate() 
+   {
+        try
+        {
+            outputScreen.value = eval(outputScreen.value);
+        }
+        catch(err)
+        {
+            alert("Invalid")
+        }
+    }
+    function Clear()
+    {
+        outputScreen.value=""
+    }
+    function del()
+    {
+        outputScreen.value= outputScreen.value.slice(0,-1)
+    }
+    
