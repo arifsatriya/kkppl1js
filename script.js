@@ -1,28 +1,21 @@
-let outputScreen = document.getElementById("output-screen");
-
-    function display(num) 
-    {
-    
-        outputScreen.value += num;
-    }
-    
-    function Calculate() 
-   {
-        try
-        {
-            outputScreen.value = eval(outputScreen.value);
-        }
-        catch(err)
-        {
-            alert("Invalid")
-        }
-    }
-    function Clear()
-    {
-        outputScreen.value=""
-    }
-    function del()
-    {
-        outputScreen.value= outputScreen.value.slice(0,-1)
-    }
-    
+const displayOutput = document.querySelector('.display')
+const buttons = document.querySelectorAll('button')
+const spcialOperators = ['%','=','+','-','/','*']
+let outPut = ''
+const calculate = (btnValue)=>{
+  if (btnValue === '=' && outPut !== ''){
+    outPut = eval(outPut.replace('%', '/100'))
+  }else if(btnValue === 'AC'){
+    outPut = ''
+  }else if (btnValue === 'DEL'){
+    outPut = outPut.toString().slice(0,-1)
+  }else{
+    if(outPut === '' && spcialOperators.includes(btnValue) )return
+    outPut+=btnValue
+  }
+  displayOutput.value = outPut
+}
+buttons.forEach(button=>{
+  button.addEventListener('click' , (e)=> calculate(e.target.dataset.value)
+)
+})
